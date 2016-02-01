@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/flywolf/AndroidstudioProjects/FamilyTree/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/home/flywolf/AndroidstudioProjects/FamilyTree/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Family Tree</string>
+    <string name="email_body">"File in an application. Order is formed in the application %s . And suggestions may be sent to flywolf1978@gmail.com"</string>
+    <string name="email_subject">"Family Tree"</string>
+    <string name="generation1">Generation 1. You are result of seven generations. 126 ancestors</string>
+    <string name="generation2">Generation 2. Mother and father. Get the material basis for evolution</string>
+    <string name="generation3">Generation 3. Grandparents. Get the desire for knowledge, knowledge of the world, inclinations, habits</string>
+    <string name="generation4">Generation 4. Great grandparents. Talents, sense of taste, harmony, attractiveness, ability to love, merits and exploits</string>
+    <string name="generation5">Generation 5. Inherit the ability to influence the fate, willed intelligence, "burning"</string>
+    <string name="generation6">Generation 6. Worldview, wisdom, credibility, pride and idealization. Liver and blood problems</string>
+    <string name="generation7">Generation 7. Global goals, debts evident in congenital anomalies, disability</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="market_url">"https://play.google.com/store/apps/details?id=com.flywolf.boxcreator"</string>
+    <string name="openn_dialog_title">View and Edit</string>
+    <string name="screen_saved">Family Tree saved into </string>
+    <string name="title_activity_open_leaf">OpenLeaf</string>
+    <!-- From: file:/home/flywolf/AndroidstudioProjects/FamilyTree/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppTheme" parent="AppTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>

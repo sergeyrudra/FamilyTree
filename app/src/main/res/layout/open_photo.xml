@@ -1,0 +1,152 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/photo_show"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg"
+
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:id="@+id/close_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:background="#bbbdb7ac"
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/big_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="3dp"
+                    android:baselineAlignBottom="false"
+                    android:cropToPadding="true"
+                    android:paddingBottom="53dp"
+                    android:paddingLeft="28dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="12dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/leaf2m" />
+
+                <ImageView
+                    android:id="@+id/big_photo_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/framem" />
+
+                <TextView
+                    android:id="@+id/big_photo_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#bbbdb7ac"
+                    android:gravity="right"
+                    android:paddingRight="40dp"
+                    android:text="test name"
+                    android:clickable="true"
+                    android:onClick="editInDialog"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:gravity="right"
+                    android:clickable="true"
+                    android:paddingRight="40dp"
+                    android:text="15/04/1978"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <EditText
+                    android:id="@+id/editTextInDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#ffffff"
+                    android:inputType="textCapWords"
+                    android:textColor="#000000"
+                    android:gravity="right"
+                    android:maxLines="2"
+                    android:paddingRight="40dp"
+                    android:textSize="22sp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/editBirthday"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="false"
+                    android:src="@drawable/btn_bd" />
+
+                <ImageView
+                    android:id="@+id/makePhoto"
+                    android:background="#bbbdb7ac"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerHorizontal="false"
+                    android:src="@drawable/photo" />
+
+                <ImageView
+                    android:id="@+id/editMenWomen"
+                    android:background="#bbbdb7ac"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="false"
+                    android:layout_marginBottom="80dp"
+                    android:visibility="invisible"
+                    android:src="@drawable/edit" />
+
+                <ImageView
+                    android:id="@+id/editGoOut"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="false"
+                    android:layout_marginBottom="40dp"
+                    android:background="#bbbdb7ac"
+                    android:src="@drawable/goout_not" />
+
+                <ImageView
+                    android:id="@+id/editInDialog"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="false"
+                    android:src="@drawable/edit" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

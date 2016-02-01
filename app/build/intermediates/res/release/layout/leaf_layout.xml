@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="100dp"
+    android:layout_gravity="center_horizontal"
+
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/leaf"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="3dp"
+        android:baselineAlignBottom="false"
+        android:cropToPadding="true"
+        android:paddingBottom="20dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="43dp"
+        android:paddingTop="7dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/leaf1" />
+
+    <ImageView
+        android:id="@+id/leafFrame"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:paddingRight="42dp"
+        android:src="@drawable/framem" />
+
+    <TextView
+        android:id="@+id/leafBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="7dp"
+        android:background="#bbbdb7ac"
+        android:gravity="right"
+        android:text=""
+        android:textColor="#000000"
+        android:typeface="sans" />
+
+    <TextView
+        android:id="@+id/leafText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false"
+        android:layout_marginLeft="45dp"
+        android:background="#bbbdb7ac"
+        android:gravity="center|left"
+        android:text=""
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:typeface="sans" />
+</RelativeLayout>
+ <!-- From: file:/home/flywolf/AndroidstudioProjects/FamilyTree/app/src/main/res/layout/leaf_layout.xml -->

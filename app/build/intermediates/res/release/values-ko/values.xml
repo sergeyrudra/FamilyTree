@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/flywolf/AndroidstudioProjects/FamilyTree/app/src/main/res/values-ko/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">패밀리 트리</string>
+    <string name="openn_dialog_title">편집</string>
+</resources>

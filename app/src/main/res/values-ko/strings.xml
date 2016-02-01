@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">패밀리 트리</string>
+    <string name="openn_dialog_title">편집</string>
+</resources>

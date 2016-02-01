@@ -1,0 +1,223 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_family_tree"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/top_tree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
+
+        <ImageButton
+            android:id="@+id/create_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/photo" />
+
+        <ImageButton
+            android:id="@+id/btn_bd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="showBirthday"
+            android:src="@drawable/btn_bd" />
+       
+       
+        <ImageButton
+            android:id="@+id/btn_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="showName"
+            android:src="@drawable/btn_name" />
+       
+       <ImageButton
+            android:id="@+id/bg_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="changeBg"
+            android:src="@drawable/bg_btn" />
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" >
+
+            <LinearLayout
+                android:id="@+id/family_tree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:id="@+id/frames_container7"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingRight="90dp"
+                    android:gravity="center_horizontal" >
+                    <RelativeLayout
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+                        <ImageView
+                            android:id="@+id/generation7"
+                            android:onClick="openGenerationTitle"
+                            android:tag="generation7"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingRight="42dp"
+                            android:src="@drawable/generation7" />
+                    </RelativeLayout>
+                </LinearLayout>
+            <LinearLayout
+                android:visibility="invisible"
+                android:id="@+id/frames_container6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                android:paddingRight="90dp"
+                android:gravity="center_horizontal" >
+                <RelativeLayout
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+                    <ImageView
+                        android:id="@+id/generation6"
+                        android:onClick="openGenerationTitle"
+                        android:tag="generation6"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:paddingRight="42dp"
+                        android:src="@drawable/generation6" />
+                </RelativeLayout>
+</LinearLayout>
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:id="@+id/frames_container5"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingRight="90dp"
+                    android:gravity="center_horizontal" >
+                    <RelativeLayout
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+                        <ImageView
+                            android:id="@+id/generation5"
+                            android:onClick="openGenerationTitle"
+                            android:tag="generation5"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingRight="42dp"
+                            android:src="@drawable/generation5" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frames_container4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingRight="90dp"
+                    android:gravity="center_horizontal" >
+                    <RelativeLayout
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+                        <ImageView
+                            android:id="@+id/generation4"
+                            android:onClick="openGenerationTitle"
+                            android:tag="generation4"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingRight="42dp"
+                            android:src="@drawable/generation4" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frames_container3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingRight="90dp"
+                    android:gravity="center_horizontal" >
+                    <RelativeLayout
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+                        <ImageView
+                            android:id="@+id/generation3"
+                            android:onClick="openGenerationTitle"
+                            android:tag="generation3"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingRight="42dp"
+                            android:src="@drawable/generation3" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frames_container2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingRight="90dp"
+                    android:gravity="center_horizontal" >
+                    <RelativeLayout
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+                        <ImageView
+                            android:id="@+id/generation2"
+                            android:onClick="openGenerationTitle"
+                            android:tag="generation2"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingRight="42dp"
+                            android:src="@drawable/generation2" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/frames_container1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingRight="90dp"
+                    android:gravity="center_horizontal" >
+                    <RelativeLayout
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical" >
+                        <ImageView
+                            android:id="@+id/generation1"
+                            android:onClick="openGenerationTitle"
+                            android:tag="generation1"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:paddingRight="42dp"
+                            android:src="@drawable/generation1" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+</LinearLayout><!-- From: file:/home/flywolf/AndroidstudioProjects/FamilyTree/app/src/main/res/layout/activity_family_tree.xml -->
