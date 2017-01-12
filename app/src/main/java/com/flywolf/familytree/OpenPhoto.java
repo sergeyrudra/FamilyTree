@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -32,13 +33,22 @@ public class OpenPhoto extends Fragment {
     private ImageView leaf;
     private Context context;
 
-    public OpenPhoto(DbWorker.Relative openInDialog, View dialogView, ImageView leaf, Context context) {
+     public void setOpenInDialog(DbWorker.Relative openInDialog) {
         this.openInDialog = openInDialog;
-        this.dialogView = dialogView;
-        this.leaf = leaf;
-        this.context = context;
     }
 
+    public void setDialogView(View dialogView) {
+        this.dialogView = dialogView;
+    }
+
+    public void setLeaf(ImageView leaf) {
+        this.leaf = leaf;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+    int SELECT_PHOTO_CODE = 2;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +57,7 @@ public class OpenPhoto extends Fragment {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"),
-                1);
+                SELECT_PHOTO_CODE);
 
     /*    String file = FamilyTree.extStorageDirectory+"fromCamera"+openInDialog.getId()+".png";
         File newfile = new File(file);
@@ -69,23 +79,26 @@ public class OpenPhoto extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         //  super.onActivityResult(1, 2, data);
         Log.d(LOG_TAG, "Photo selected");
-        if (data != null && data.getData() != null) {
-            Uri _uri = data.getData();
-            Bitmap bm = readBitmap(_uri);
-            Drawable bgrImage = new BitmapDrawable(bm);
-             try {
-                openInDialog.setImgB(DbWorker.getBytes(bm));//PhotoUrl(FamilyTree.savePhoto(img, openInDialog));
-                Log.d(LOG_TAG, "read photo1 " + openInDialog.getImgB());
-            } catch (Exception e) {
-                Log.e(LOG_TAG, "read photo error " + e.getMessage());
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+        if (requestCode == SELECT_PHOTO_CODE && resultCode == -1) {
+            if (data != null && data.getData() != null) {
+                Uri _uri = data.getData();
+                Bitmap bm = readBitmap(_uri);
+                Drawable bgrImage = new BitmapDrawable(bm);
+                try {
+                    openInDialog.setImgB(DbWorker.getBytes(bm));//PhotoUrl(FamilyTree.savePhoto(img, openInDialog));
+                    Log.d(LOG_TAG, "read photo1 " + openInDialog.getImgB());
+                } catch (Exception e) {
+                    Toast.makeText(context, "Error, try again", Toast.LENGTH_SHORT);
+                    Log.e(LOG_TAG, "read photo error " + e.getMessage());
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                leaf.setImageDrawable(bgrImage);
+                ImageView photo = (ImageView) dialogView
+                        .findViewById(R.id.big_photo);
+                photo.setImageDrawable(bgrImage);
+                FamilyTree.dbWorker.saveRelative(openInDialog);
             }
-            leaf.setImageDrawable(bgrImage);
-            ImageView photo = (ImageView) dialogView
-                    .findViewById(R.id.big_photo);
-            photo.setImageDrawable(bgrImage);
-            FamilyTree.dbWorker.saveRelative(openInDialog);
         }
         super.onActivityResult(requestCode, resultCode, data);
 

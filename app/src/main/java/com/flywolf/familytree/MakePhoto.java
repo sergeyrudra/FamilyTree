@@ -3,21 +3,12 @@ package com.flywolf.familytree;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * Created by flywolf on 3/5/15.
@@ -35,12 +26,7 @@ public class MakePhoto extends Fragment {
     private Context context;
     int TAKE_PHOTO_CODE = 0;
     public MakePhoto(){}
-    public MakePhoto(DbWorker.Relative openInDialog, View dialogView, ImageView leaf, Context context) {
-        this.openInDialog = openInDialog;
-        this.dialogView = dialogView;
-        this.leaf = leaf;
-        this.context = context;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +35,22 @@ public class MakePhoto extends Fragment {
         if (takePictureIntent.resolveActivity(context.getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, TAKE_PHOTO_CODE);
         }
+    }
+
+    public void setOpenInDialog(DbWorker.Relative openInDialog) {
+        this.openInDialog = openInDialog;
+    }
+
+    public void setDialogView(View dialogView) {
+        this.dialogView = dialogView;
+    }
+
+    public void setLeaf(ImageView leaf) {
+        this.leaf = leaf;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     @Override

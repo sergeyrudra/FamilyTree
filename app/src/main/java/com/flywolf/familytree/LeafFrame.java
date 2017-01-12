@@ -348,7 +348,11 @@ public class LeafFrame extends RelativeLayout {
                 // @Override
                 public void onClick(View v) {
                     FragmentManager fm = fragmentManager;
-                    OpenPhoto fragment = new OpenPhoto(openInDialog, dialogView, leaf, context);
+                    OpenPhoto fragment = new OpenPhoto();
+                    fragment.setContext(context);
+                    fragment.setDialogView(dialogView);
+                    fragment.setOpenInDialog(openInDialog);
+                    fragment.setLeaf(leaf);
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.add(android.R.id.content, fragment, "myFragmentTag");
                     ft.commit();
@@ -362,7 +366,11 @@ public class LeafFrame extends RelativeLayout {
                 // @Override
                 public void onClick(View v) {
                     FragmentManager fm = fragmentManager;
-                    MakePhoto fragment = new MakePhoto(openInDialog, dialogView, leaf, context);
+                    MakePhoto fragment = new MakePhoto();
+                    fragment.setContext(context);
+                    fragment.setDialogView(dialogView);
+                    fragment.setOpenInDialog(openInDialog);
+                    fragment.setLeaf(leaf);
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.add(android.R.id.content, fragment, "makePhotoFragment");
                     ft.commit();
