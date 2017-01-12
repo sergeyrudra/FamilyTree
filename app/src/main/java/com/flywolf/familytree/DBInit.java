@@ -18,14 +18,14 @@ public class DBInit extends SQLiteOpenHelper {
     public static DBInit getDBHelper(Context context) {
         if (dbInit == null) {
             //set db version number
-            dbInit = new DBInit(context, 3);
+            dbInit = new DBInit(context, 1);
         }
         return dbInit;
     }
 
     public DBInit(Context context, int dbVersion) {
         // create constractor
-        super(context, "family_tree", null, dbVersion);
+        super(context, "family_tree2", null, dbVersion);
         //context.deleteDatabase("family_tree");
 
     }
@@ -56,7 +56,7 @@ public class DBInit extends SQLiteOpenHelper {
         db.execSQL("create table relative ("
                 + "id integer primary key autoincrement," + "tree_id integer,"
                 + "leaf_id integer," + "women boolean default false,"
-                + "name text, birthday text, death text, relation integer, photo_url string,"
+                + "name text, birthday text, death text, relation integer, photo_url string, img_b BLOB,"
                 + "go_out boolean default false,"
                 + "latitide DOUBLE," + "longitude DOUBLE,"
                 + "description text);");
@@ -72,7 +72,7 @@ public class DBInit extends SQLiteOpenHelper {
         Log.d(LOG_TAG, " --- onUpgrade database from " + oldVersion + " to "
                 + newVersion + " version --- ");
 
-        if (oldVersion == 1) {
+       /* if (oldVersion == 1) {
             db.beginTransaction();
             try {
                 db.execSQL("ALTER TABLE relative ADD COLUMN go_out boolean default false;");
@@ -95,7 +95,7 @@ public class DBInit extends SQLiteOpenHelper {
                 db.endTransaction();
             }
 
-        }
+        }*/
     }
 
 

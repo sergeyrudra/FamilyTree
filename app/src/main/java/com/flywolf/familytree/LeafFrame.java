@@ -1,36 +1,26 @@
 package com.flywolf.familytree;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Created by flywolf on 2/26/15.
@@ -71,9 +61,9 @@ public class LeafFrame extends RelativeLayout {
     /* public void setLeafBitmap(Bitmap b) {
          this.leaf.setImageBitmap(b);
      }*/
-    public void setLeaf(String url) {
-        Picasso.with(getContext()).load(url).into(this.leaf);
-    }
+    public void setLeaf(Bitmap b) {
+        leaf.setImageBitmap(b);
+     }
 
 
     public void setLeafFrame(int resourceId) {
@@ -128,8 +118,8 @@ public class LeafFrame extends RelativeLayout {
             // file for
             // imageView
             ImageView img = (ImageView) dialogView.findViewById(R.id.big_photo);
-            if (openInDialog.photoUrl != null
-                    && !openInDialog.photoUrl.contentEquals("")) {
+            if (openInDialog.getImgB() != null
+                    ) {
                 Bitmap bgrImage;
                 try {
                     IMAGE_MAX_SIZE = 350;
@@ -163,7 +153,7 @@ public class LeafFrame extends RelativeLayout {
 
             TextView img_text = (TextView) dialogView
                     .findViewById(R.id.big_photo_text);
-            img_text.setText(openInDialog.getName());
+            img_text.setText(openInDialog.getName()==null?getResources().getString(R.string.touch_type):openInDialog.getName());
             img_text = (TextView) dialogView.findViewById(R.id.birthday);
             img_text.setText(dateFormat(openInDialog.getBirthday()));
             ImageView image = (ImageView) dialogView
@@ -438,11 +428,11 @@ public class LeafFrame extends RelativeLayout {
     private Bitmap readPhoto(DbWorker.Relative r) throws Exception {
         Bitmap bm = null;
         try {
-            bm = decodeFile(extStorageDirectory + "/familytree" + r.getLeafId()
-                    + ".png");
+            bm = DbWorker.getImage(r.imgB);//decodeFile(extStorageDirectory + "/familytree" + r.getLeafId()
+                   // + ".png");
         } catch (Exception e) {
             Log.d(LOG_TAG, "error read leaf " + e.toString());
-            bm = decodeFile(r.photoUrl);
+           // bm = DbWorker.getImage(r.imgB);
         }
         return bm;
     }

@@ -9,23 +9,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 /**
  * Created by flywolf on 3/5/15.
@@ -81,28 +71,13 @@ public class OpenPhoto extends Fragment {
         Log.d(LOG_TAG, "Photo selected");
         if (data != null && data.getData() != null) {
             Uri _uri = data.getData();
-
             Bitmap bm = readBitmap(_uri);
             Drawable bgrImage = new BitmapDrawable(bm);
-            String realPath;
-            // SDK < API11
-            if (Build.VERSION.SDK_INT < 11)
-                realPath = RealPathUtil.getRealPathFromURI_BelowAPI11(context, data.getData());
-
-                // SDK >= 11 && SDK < 19
-            else if (Build.VERSION.SDK_INT < 19)
-                realPath = RealPathUtil.getRealPathFromURI_API11to18(context, data.getData());
-
-                // SDK > 19 (Android 4.4)
-            else
-                realPath = RealPathUtil.getRealPathFromURI_API19(context, data.getData());
-
-            Log.d(LOG_TAG, "photo saved try _uri=" + realPath);
-            try {
-                //Picasso.with(context).load(R.drawable.photo).into(leaf);
-                //FamilyTree.savePhoto(Picasso.with(context).load("file://"+realPath).resize(300, 300).get(),openInDialog);
-                FamilyTree.savePhoto(FamilyTree.decodeFile(realPath), openInDialog);
+             try {
+                openInDialog.setImgB(DbWorker.getBytes(bm));//PhotoUrl(FamilyTree.savePhoto(img, openInDialog));
+                Log.d(LOG_TAG, "read photo1 " + openInDialog.getImgB());
             } catch (Exception e) {
+                Log.e(LOG_TAG, "read photo error " + e.getMessage());
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
@@ -110,10 +85,7 @@ public class OpenPhoto extends Fragment {
             ImageView photo = (ImageView) dialogView
                     .findViewById(R.id.big_photo);
             photo.setImageDrawable(bgrImage);
-            openInDialog.setPhotoUrl(realPath);
-            // File myFile = new File(_uri.toString());
             FamilyTree.dbWorker.saveRelative(openInDialog);
-            Log.d(LOG_TAG, "path = " + realPath);
         }
         super.onActivityResult(requestCode, resultCode, data);
 

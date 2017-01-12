@@ -13,6 +13,7 @@
     <string name="email_subject">"Родовое дерево"</string>
     <string name="email_body">"File in an application. Order is formed in the application %s . And suggestions may be sent to flywolf1978@gmail.com"</string>
     <string name="market_url">"https://play.google.com/store/apps/details?id=com.flywolf.boxcreator"</string>
+    <string name="touch_type">Коснитесь для ввода</string>
 
 
 </resources>

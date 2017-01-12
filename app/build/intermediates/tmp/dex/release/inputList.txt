@@ -1,5 +1,0 @@
-/home/flywolf/AndroidstudioProjects/FamilyTree/app/build/intermediates/classes/release
-/home/flywolf/AndroidstudioProjects/FamilyTree/app/build/intermediates/pre-dexed/release/support-annotations-23.1.1-49708fd6d1f0a0d1dc42980ef7f65f0cf855a8ff.jar
-/home/flywolf/AndroidstudioProjects/FamilyTree/app/build/intermediates/pre-dexed/release/picasso-2.5.2-adb9b293bff78bbab04620ad9ee2c161ac0cf260.jar
-/home/flywolf/AndroidstudioProjects/FamilyTree/app/build/intermediates/pre-dexed/release/internal_impl-23.1.1-9981fc1ca72fa290108c4aa8630a6bb20d71cdfb.jar
-/home/flywolf/AndroidstudioProjects/FamilyTree/app/build/intermediates/pre-dexed/release/classes-9111f73f364649995c98f56cc3efc12b0d4ebcfb.jar

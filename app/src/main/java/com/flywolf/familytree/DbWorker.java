@@ -1,5 +1,7 @@
 package com.flywolf.familytree;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +11,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 public class DbWorker {
@@ -50,7 +55,8 @@ public class DbWorker {
 
         cv.put("name", cs.name);
         cv.put("women", cs.women ? "true" : "false");
-        cv.put("photo_url", cs.photoUrl);
+    //    cv.put("photo_url", cs.photoUrl);
+        cv.put("img_b", cs.imgB);
         if (cs.birthday != null) cv.put("birthday", DBInit.getDate(cs.birthday));
         cv.put("description", cs.description);
         cv.put("go_out", cs.goOut ? "true" : "false");
@@ -58,6 +64,29 @@ public class DbWorker {
         Log.d(LOG_TAG, "row updated, ID = " + rowID);
         dbInit.close();
         return rowID;
+    }
+    public static byte[] getBytes(Bitmap bitmap)
+    {
+        ByteArrayOutputStream stream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,80, stream);
+        return stream.toByteArray();
+    }
+
+
+    public static Bitmap scaleBitmap(Bitmap mBitmap) {
+        int ScaleSize = FamilyTree.IMAGE_MAX_SIZE;//max Height or width to Scale
+        int width = mBitmap.getWidth();
+        int height = mBitmap.getHeight();
+        float excessSizeRatio = width > height ? width / ScaleSize : height / ScaleSize;
+        Bitmap bitmap = Bitmap.createBitmap(
+                mBitmap, 0, 0,(int) (width/excessSizeRatio),(int) (height/excessSizeRatio));
+        //mBitmap.recycle();
+        return bitmap;
+    }
+
+    public static Bitmap getImage(byte[] image)
+    {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
     public void readFromDb() {
@@ -74,9 +103,10 @@ public class DbWorker {
             int womenColIndex = c.getColumnIndex("women");
             int nameColIndex = c.getColumnIndex("name");
             int birthdayColIndex = c.getColumnIndex("birthday");
-            int photoUrlColIndex = c.getColumnIndex("photo_url");
+          //  int photoUrlColIndex = c.getColumnIndex("photo_url");
             int descriptionColIndex = c.getColumnIndex("description");
             int goOutColIndex = c.getColumnIndex("go_out");
+            int imgBColIndex = c.getColumnIndex("img_b");
 
             relative = new ArrayList<Relative>();
             do {
@@ -87,9 +117,10 @@ public class DbWorker {
                 rl.leafId = c.getInt(leafIdColIndex);
                 rl.women = Boolean.parseBoolean(c.getString(womenColIndex));
                 rl.name = c.getString(nameColIndex);
-                rl.photoUrl = c.getString(photoUrlColIndex);
+                //rl.photoUrl = c.getString(photoUrlColIndex);
                 rl.description = c.getString(descriptionColIndex);
                 rl.goOut = Boolean.parseBoolean(c.getString(goOutColIndex));
+                rl.imgB = c.getBlob(imgBColIndex);
                 try {
                     rl.birthday = c.getString(birthdayColIndex) == null ? null
                             : DBInit.toDate(c.getString(birthdayColIndex));
@@ -105,7 +136,6 @@ public class DbWorker {
         c.close();
         dbInit.close();
     }
-
     public class Relative {
         int id;
         int treeId;
@@ -114,8 +144,16 @@ public class DbWorker {
         boolean goOut;
         Date birthday;
         String name;
-        String photoUrl;
         String description;
+        byte[] imgB;
+
+        public byte[] getImgB() {
+            return imgB;
+        }
+
+        public void setImgB(byte[] imgB) {
+            this.imgB = imgB;
+        }
 
         public int getId() {
             return id;
@@ -163,14 +201,6 @@ public class DbWorker {
 
         public void setName(String name) {
             this.name = name;
-        }
-
-        public String getPhotoUrl() {
-            return photoUrl;
-        }
-
-        public void setPhotoUrl(String photoUrl) {
-            this.photoUrl = photoUrl;
         }
 
         public String getDescription() {

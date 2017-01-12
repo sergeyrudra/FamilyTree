@@ -1,9 +1,11 @@
 package com.flywolf.familytree;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -11,6 +13,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
@@ -24,6 +28,7 @@ import android.widget.Toast;
 
 import com.flywolf.familytree.DbWorker.Relative;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -102,16 +107,12 @@ public class FamilyTree extends Activity {
             } else {
                 frame.setLeafBirthdayVisibility(false);
             }
-            if (cs.photoUrl != null && !cs.photoUrl.contentEquals("")) {
+            Log.d(LOG_TAG, "read photo " + cs.getImgB());
+            if (cs.getImgB() != null) {
                 IMAGE_MAX_SIZE = 150;
-                try {
-                    Log.d(LOG_TAG, "cs.photoUrl " + cs.photoUrl);
-                    //Bitmap bgrImage = readPhoto(cs);
-                    frame.setLeaf("file://" + cs.photoUrl);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
+
+                    frame.setLeaf(DbWorker.getImage(cs.getImgB()));
+              } else {
                 if (cs.id != 1)
                     frame.setLeaf((cs.id % 2 == 0) ? R.drawable.leaf2m : R.drawable.leaf2w);
             }
@@ -157,20 +158,7 @@ public class FamilyTree extends Activity {
                 .show();
     }
 
-    /*
-        private Bitmap readPhoto(Relative r) throws Exception {
-            Bitmap bm = null;
-            try {
-                bm = decodeFile(extStorageDirectory + "/familytree" + r.getLeafId()
-                        + ".png");
-            } catch (Exception e) {
-                Log.d(LOG_TAG, "error read leaf " + e.toString());
-                bm = decodeFile(r.photoUrl);
-            }
-            return bm;
-        }
-    */
-    int bgId;
+     int bgId;
 
     @SuppressLint("NewApi")
     public void changeBg(View view) {
@@ -530,37 +518,9 @@ public class FamilyTree extends Activity {
 	}
 */
 
-    public static Bitmap decodeFile(String f) throws Exception {
-        Bitmap b = null;
-
-        // Decode image size
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inJustDecodeBounds = true;
-
-        FileInputStream fis = new FileInputStream(f);
-        BitmapFactory.decodeStream(fis, null, o);
-        fis.close();
-
-        int scale = 1;
-        if (o.outHeight > IMAGE_MAX_SIZE || o.outWidth > IMAGE_MAX_SIZE) {
-            scale = (int) Math.pow(
-                    2,
-                    (int) Math.round(Math.log(IMAGE_MAX_SIZE
-                            / (double) Math.max(o.outHeight, o.outWidth))
-                            / Math.log(0.5)));
-        }
-
-        // Decode with inSampleSize
-        BitmapFactory.Options o2 = new BitmapFactory.Options();
-        o2.inSampleSize = scale;
-        fis = new FileInputStream(f);
-        b = BitmapFactory.decodeStream(fis, null, o2);
-        fis.close();
-
-        return b;
-    }
-
-    public static void savePhoto(Bitmap bm, DbWorker.Relative openInDialog) {
+/*
+    public static String savePhoto(Bitmap bm, DbWorker.Relative openInDialog) {
+        String photoUrl="";
         try {
             //  Log.d(LOG_TAG, "try save " + FamilyTree.extStorageDirectory + "familytree");
             File wallpaperDirectory = new File(FamilyTree.extStorageDirectory);
@@ -568,7 +528,8 @@ public class FamilyTree extends Activity {
             wallpaperDirectory.mkdirs();
 // create a File object for the output file
             // File outputFile = new File(wallpaperDirectory, filename);
-
+            photoUrl=FamilyTree.extStorageDirectory+"familytree"
+                    + openInDialog.getLeafId() + ".png";
             File file = new File(wallpaperDirectory, "familytree"
                     + openInDialog.getLeafId() + ".png");
             OutputStream outStream;
@@ -581,6 +542,7 @@ public class FamilyTree extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return "file:/"+photoUrl;
     }
-
+*/
 }

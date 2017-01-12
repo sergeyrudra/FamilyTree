@@ -7,9 +7,7 @@
     <uses-sdk
         android:minSdkVersion="9"
         android:targetSdkVersion="19" />
-
-
-    <application
+   <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@drawable/ic_launcher"
@@ -19,10 +17,14 @@
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         <uses-permission android:name="android.permission.CAMERA" />
-        <activity
+       <uses-feature android:name="android.hardware.camera"
+           android:required="true" />
+
+       <activity
             android:name=".FamilyTree"
             android:configChanges="keyboard|orientation"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
