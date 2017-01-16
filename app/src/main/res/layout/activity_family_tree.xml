@@ -12,6 +12,7 @@
         android:layout_gravity="center_horizontal">
 
         <ImageButton
+            android:visibility="invisible"
             android:id="@+id/create_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
